@@ -1,5 +1,11 @@
 import { Field, FieldOptions, ReturnTypeFunc, ReturnTypeFuncValue } from '@nestjs/graphql'
-import { ArrayReflector, Class, FilterComparisonOperators, getPrototypeChain } from '@ptc-org/nestjs-query-core'
+import {
+  ArrayReflector,
+  Class,
+  FilterComparisonOperators,
+  FilterFieldComparison,
+  getPrototypeChain
+} from '@ptc-org/nestjs-query-core'
 
 import { FILTERABLE_FIELD_KEY } from './constants'
 
@@ -10,6 +16,7 @@ export type FilterableFieldOptions = {
   filterOnly?: boolean
   filterDecorators?: PropertyDecorator[]
   overrideFilterTypeNamePrefix?: string
+  intersectionInputType?: Class<FilterFieldComparison<unknown>>
 } & FieldOptions
 
 export interface FilterableFieldDescriptor {
@@ -95,6 +102,7 @@ export function FilterableField(
     if (advancedOptions) {
       return Field(advancedOptions)(target, propertyName, descriptor)
     }
+
     return Field()(target, propertyName, descriptor)
   }
 }

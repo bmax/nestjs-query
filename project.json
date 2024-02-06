@@ -13,7 +13,9 @@
       },
       "configurations": {
         "production": {
-          "postTargets": ["workspace:github"]
+          "postTargets": [
+            "workspace:github"
+          ]
         }
       }
     },

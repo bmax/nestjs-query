@@ -1,4 +1,5 @@
 import {
+  createUnionType,
   Field,
   Float,
   GraphQLISODateTime,
@@ -6,6 +7,7 @@ import {
   ID,
   InputType,
   Int,
+  IntersectionType,
   ReturnTypeFunc,
   ReturnTypeFuncValue
 } from '@nestjs/graphql'
@@ -86,6 +88,7 @@ type FilterComparisonOptions<T> = {
   returnTypeFunc?: ReturnTypeFunc<ReturnTypeFuncValue>
   decorators?: PropertyDecorator[]
   overrideTypeNamePrefix?: string
+  intersectionInputType?: Class<FilterFieldComparison<T>>
 }
 
 /** @internal */
@@ -216,6 +219,12 @@ export function createFilterComparisonType<T>(options: FilterComparisonOptions<T
     notBetween?: T
   }
 
-  filterComparisonMap.set(inputName, () => Fc)
-  return Fc as Class<FilterFieldComparison<T>>
+  let returnClass = Fc as Class<FilterFieldComparison<T>>
+  if (options.intersectionInputType) {
+    @InputType(inputName)
+    class intersectionFc extends IntersectionType(options.intersectionInputType as any, Fc) { }
+    returnClass = intersectionFc as Class<FilterFieldComparison<T>>
+  }
+  filterComparisonMap.set(inputName, () => returnClass)
+  return returnClass
 }

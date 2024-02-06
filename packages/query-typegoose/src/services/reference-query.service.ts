@@ -28,7 +28,7 @@ import {
 export abstract class ReferenceQueryService<Entity extends Base> {
   abstract readonly filterQueryBuilder: FilterQueryBuilder<Entity>
 
-  protected constructor(readonly Model: ReturnModelType<new () => Entity>) {}
+  protected constructor(readonly Model: ReturnModelType<new () => Entity>) { }
 
   abstract getById(id: string | number, opts?: GetByIdOptions<Entity>): Promise<DocumentType<Entity>>
 

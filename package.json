@@ -114,5 +114,12 @@
     "tsconfig-paths": "4.2.0",
     "typescript": "5.2.2"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pursuit-us/nestjs-query.git"
+  }
 }

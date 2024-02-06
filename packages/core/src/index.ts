@@ -17,6 +17,7 @@ export {
   applySort,
   getFilterComparisons,
   getFilterFields,
+  getFilterIncluding,
   getFilterOmitting,
   invertSort,
   mergeFilter,

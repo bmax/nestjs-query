@@ -27,7 +27,6 @@ env:
   NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
-
   prepare-env:
     runs-on: ubuntu-latest
     outputs:
@@ -55,7 +54,7 @@ jobs:
         uses: ./tools/actions/set-master-vars
 
   release:
-    needs: [ prepare-env ]
+    needs: [prepare-env]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -73,7 +72,7 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          echo "@NAMESPACE:registry=https://npm.pkg.github.com" > .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 

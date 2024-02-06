@@ -203,6 +203,23 @@ export const getFilterOmitting = <DTO>(filter: Filter<DTO>, ...keys: (keyof Filt
     return omitted
   }, {} as Filter<DTO>)
 
+export const getFilterIncluding = <DTO>(filter: Filter<DTO>, ...keys: (keyof Filter<DTO>)[]): Filter<DTO> => {
+  let values: Filter<DTO>
+  Object.keys(filter).some((next) => {
+    const k = next as keyof Filter<DTO>
+
+    if (keys.includes(k)) {
+      values = filter[k] as Filter<DTO>
+      return true
+    }
+    if (filter[k] && typeof filter[k] === 'object') {
+      values = getFilterIncluding(filter[k] as Filter<DTO>, ...keys)
+      return values !== undefined
+    }
+  })
+  return values
+}
+
 export function applyFilter<DTO>(dto: DTO[], filter: Filter<DTO>): DTO[]
 export function applyFilter<DTO>(dto: DTO, filter: Filter<DTO>): boolean
 export function applyFilter<DTO>(dtoOrArray: DTO | DTO[], filter: Filter<DTO>): boolean | DTO[] {
