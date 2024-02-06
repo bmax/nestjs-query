@@ -14,8 +14,13 @@
   "files": [
     "src/**"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pursuit-us/nestjs-query.git",
+    "directory": "packages/query-typegoose"
+  },
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "camel-case": "^4.1.2",
@@ -29,11 +34,6 @@
     "@nestjs/common": "^9.0.0 || ^10.0.0",
     "@typegoose/typegoose": "^9.0.0 || ^10.0.0 || ^11.0.0",
     "mongoose": "^6.5.0 || ^7.0.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tripss/nestjs-query.git",
-    "directory": "packages/query-typegoose"
   },
   "bugs": {
     "url": "https://github.com/tripss/nestjs-query/issues"

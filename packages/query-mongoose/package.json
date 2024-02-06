@@ -14,9 +14,6 @@
   "files": [
     "src/**"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "camel-case": "^4.1.2",
     "lodash.escaperegexp": "^4.1.2",
@@ -28,9 +25,12 @@
     "@nestjs/mongoose": "^9.0.0 || ^10.0.0",
     "mongoose": "^6.5.0"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tripss/nestjs-query.git",
+    "url": "git+https://github.com/pursuit-us/nestjs-query.git",
     "directory": "packages/query-typeorm-mongo"
   },
   "bugs": {
